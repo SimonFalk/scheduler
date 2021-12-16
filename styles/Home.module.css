@@ -1,0 +1,6 @@
+.home {
+  width: 360px;
+  height: calc(100vh - 20px);
+  margin: 10px 0px;
+  border: 1px solid red;
+}

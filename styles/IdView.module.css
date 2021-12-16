@@ -1,0 +1,11 @@
+.container {
+  padding: 8px;
+}
+.form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.passwordInput {
+  width: 5em;
+}
