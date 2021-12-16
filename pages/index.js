@@ -1,5 +1,5 @@
 function HomePage() {
-    return <div>Welcome to Next.js!</div>
+    return <div className={styles.pageContent}><TestPresenter /></div>
   }
   
   export default HomePage
