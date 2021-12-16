@@ -11,6 +11,7 @@
 .caption {
   height: auto;
   width: auto;
+  text-align: center;
   padding: 8px;
   font-style: italic;
   background-color: rgb(135, 135, 135, 0.35);

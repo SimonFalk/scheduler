@@ -7,7 +7,7 @@ export default function IdView(props) {
         <div>
           <label htmlFor="name-select">I am: </label>
           <select id="name-select">
-            <option selected>(Choose)</option>
+            <option defaultValue>(Choose)</option>
             <option>Hannes</option>
             <option>Lena</option>
             <option>Ellen</option>
