@@ -27,7 +27,7 @@ export default class ScheduleModel {
 
     this.dates = generateDates();
 
-    this.persons = ["Melker", "Ellen", "Ines", "Lena", "Hannes", "Simon"];
+    this.persons = ["Ines", "Ellen", "Melker", "Simon", "Hannes", "Lena"];
 
     this.duties = ["Kitchen", "Recycling"];
 

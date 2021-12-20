@@ -4,10 +4,10 @@ import Image from "next/image";
 export default function TestView(props) {
   const personalIcons = {
     Lena: "fas fa-landmark",
-    Ellen: "fas fa-brain",
+    Ellen: "fas fa-diagnoses",
     Melker: "fas fa-industry",
-    Simon: "fas fa-atom",
-    Hannes: "fas fa-guitar",
+    Simon: "fas fa-calculator",
+    Hannes: "fas fa-music",
     Ines: "fas fa-robot",
   };
   return (
@@ -15,10 +15,17 @@ export default function TestView(props) {
       <div className={styles.titleBox}></div>
       <div className={styles.title}>{props.forDuty}</div>
       <table className={styles.table}>
+        <thead>
+          <tr>
+            <td>Due date</td>
+            <td>Name</td>
+            <td></td>
+          </tr>
+        </thead>
         <tbody>
           {[...props.tasks].map((task) => {
             return (
-              <tr key={task.id}>
+              <tr class={styles.tableRow} key={task.id}>
                 <td>{task.month}</td>
                 <td>{task.person}</td>
                 <td className={task.done ? "icon-color" : "icon-black"}>

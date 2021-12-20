@@ -1,22 +1,39 @@
 .container {
   width: 40%;
   text-align: center;
-  padding: 10px 5px;
+  background-color: rgb(235, 235, 235);
 }
 
 .title {
   height: auto;
-  background-color: lightblue;
   margin: 10px;
   padding: 4px;
   border-radius: 8px;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  color: black;
 }
 
 .table {
   margin-left: auto;
   margin-right: auto;
+  border-collapse: collapse;
+  font-size: 10pt;
 }
 
-.icon-color {
-  color: purple;
+.table thead {
+  font-style: italic;
+  background-color: #fff;
+}
+
+.table tbody {
+  background-color: lightblue;
+}
+
+.table tr {
+  border: 2px solid #fff;
+}
+
+.table tr td {
+  padding: 3px;
 }

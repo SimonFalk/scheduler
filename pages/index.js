@@ -10,15 +10,13 @@ function Home(props) {
       <div className={styles.headerBox}>
         <HeaderView />
       </div>
-      <div className={styles.pageBox}>
-        <div>
-          <IdPresenter />
-        </div>
-        <div className={styles.tableBox}>
-          {[...props.model.duties].map((duty) => (
-            <TestPresenter forDuty={duty} model={props.model} />
-          ))}
-        </div>
+      <div className={styles.idBox}>
+        <IdPresenter model={props.model} />
+      </div>
+      <div className={styles.tableBox}>
+        {[...props.model.duties].map((duty) => (
+          <TestPresenter forDuty={duty} model={props.model} />
+        ))}
       </div>
     </div>
   );
