@@ -27,7 +27,7 @@ export default class ScheduleModel {
 
     this.dates = generateDates();
 
-    this.names = ["Melker", "Ellen", "Ines", "Lena", "Hannes", "Simon"];
+    this.persons = ["Melker", "Ellen", "Ines", "Lena", "Hannes", "Simon"];
 
     this.duties = ["Kitchen", "Recycling"];
 
@@ -63,7 +63,7 @@ export default class ScheduleModel {
         ...this.tasks,
         {
           duty: this.duties[dutyId],
-          person: this.names[(getWeek(date) + dutyId * 2) % 6],
+          person: this.persons[(getWeek(date) + dutyId * 2) % 6],
           month: date.toLocaleDateString("en-US", {
             day: "2-digit",
             month: "short",
