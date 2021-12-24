@@ -13,20 +13,28 @@ export default function TestView(props) {
             <td>Due date</td>
             <td>Name</td>
             <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
           {[...props.tasks].map((task) => {
             return (
-              <tr class={styles.tableRow} key={task.id}>
-                <td>{task.date}</td>
+              <tr className={styles.tableRow} key={task.id}>
+                <td>{task.date.toLocaleDateString("en-US", {day: "2-digit",month: "short",})}</td>
                 <td>{task.person}</td>
-                <td className={task.done ? "icon-color" : "icon-black"}>
+                <td>{task.id}</td>
+                <td>{task.done?"Done":"Not done"}</td>
+                <td>{task.stars}</td>
+                <td><button onClick={()=>props.toggleTaskState(task.id)}>Mark</button></td>
+                {/* 
+                <td>
                   <i
                     className={personalIcons[task.person]}
                     onClick={() => props.toggleTaskState(task.id)}
                   ></i>
                 </td>
+                */}
               </tr>
             );
           })}

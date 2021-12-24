@@ -1,15 +1,5 @@
 const dayMilliSeconds = 24 * 3600 * 1000;
 
-function generateDates() {
-  const today = new Date(2022, 0, 5);
-  const lastSunday = new Date(
-    today.getTime() - dayMilliSeconds * today.getUTCDay()
-  );
-  return [0, 1, 2, 3].map((lag) => {
-    return new Date(lastSunday.getTime() + lag * 7 * dayMilliSeconds);
-  });
-}
-
 function getWeek(dateObj) {
   const newYearsEve = new Date(dateObj.getFullYear(), 0, 1);
   return Math.ceil(
@@ -25,7 +15,7 @@ export default class ScheduleModel {
 
     this.user = null;
 
-    this.dates = generateDates();
+    this.baseDate = new Date();
 
     this.persons = [
       {
@@ -57,7 +47,7 @@ export default class ScheduleModel {
     this.duties = ["Kitchen/recycling"];
 
     this.tasks = [];
-    generateDates().forEach((date) => this.calculateTasks(date));
+    this.generateDates(20).forEach((date) => this.calculateTasks(date));
   }
   addObserver(callback) {
     this.observers = [...this.observers, callback];
@@ -78,9 +68,19 @@ export default class ScheduleModel {
     this.user = user;
     this.notifyObservers();
   }
+  setDate(date) {
+    this.date = date;
+    this.notifyObservers()
+  }
   calculateMonths() {
     const today = new Date();
     return [0, 1, 2, 3].map((lag) => (today.getMonth() + lag) % 12);
+  }
+  generateDates(len) {
+    const lastSunday = new Date(this.baseDate.getTime() - dayMilliSeconds * this.baseDate.getUTCDay());
+    return [...Array(len).keys()].map((lag) => {
+      return new Date(lastSunday.getTime() + lag * 7 * dayMilliSeconds);
+    });
   }
   calculateTasks(date) {
     for (let dutyId = 0; dutyId < this.duties.length; dutyId++) {
@@ -89,23 +89,25 @@ export default class ScheduleModel {
         {
           duty: this.duties[dutyId],
           person: this.persons[(getWeek(date) + dutyId * 2) % 6].name,
-          date: date.toLocaleDateString("en-US", {
-            day: "2-digit",
-            month: "short",
-          }),
-          id: dutyId + (date.getTime() / 1000).toString().substring(3),
+          date: date,
+          id: dutyId + (date.getTime() / 1000).toString().substring(0,9),
           done: false,
+          stars: 0,
         },
       ];
     }
     return;
   }
   toggleTaskState(id) {
+    const todayTime = new Date().getTime();
+    const taskTime = this.tasks.filter((obj) => obj.id === id)[0].date;
+    if ((todayTime - taskTime)>7*dayMilliSeconds || (taskTime > todayTime)) {
+      return;
+    }
     const objIndex = this.tasks.findIndex((obj) => obj.id == id);
     this.tasks = this.tasks.map((task) => {
       return task.id != id ? task : { ...task, done: !task.done };
     });
-    console.log(this.tasks);
     this.notifyObservers();
   }
 }
