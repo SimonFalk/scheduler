@@ -17,6 +17,8 @@ export default class ScheduleModel {
 
     this.baseDate = new Date();
 
+    this.today = new Date();
+
     this.persons = [
       {
         name: "Ines",
@@ -69,7 +71,13 @@ export default class ScheduleModel {
     this.notifyObservers();
   }
   setDate(date) {
-    this.date = date;
+    this.today = date;
+    this.notifyObservers()
+  }
+  setBaseDate(date) {
+    this.baseDate = date;
+    this.tasks = [];
+    this.generateDates(20).forEach((date) => this.calculateTasks(date));
     this.notifyObservers()
   }
   calculateMonths() {
@@ -77,7 +85,8 @@ export default class ScheduleModel {
     return [0, 1, 2, 3].map((lag) => (today.getMonth() + lag) % 12);
   }
   generateDates(len) {
-    const lastSunday = new Date(this.baseDate.getTime() - dayMilliSeconds * this.baseDate.getUTCDay());
+    const lastSunday = new Date(this.baseDate.getTime() - dayMilliSeconds * (this.baseDate.getDay()));
+    console.log(lastSunday.toLocaleDateString("en-US"));
     return [...Array(len).keys()].map((lag) => {
       return new Date(lastSunday.getTime() + lag * 7 * dayMilliSeconds);
     });
@@ -98,10 +107,16 @@ export default class ScheduleModel {
     }
     return;
   }
+  setStarsForTask(taskId, starsValue) {
+    this.tasks = [...this.tasks].map((obj) => {
+      return (taskId===obj.id)?{...obj, stars:starsValue}:obj;});
+    this.notifyObservers();
+  }
   toggleTaskState(id) {
-    const todayTime = new Date().getTime();
+    const todayTime = this.today.getTime();
     const taskTime = this.tasks.filter((obj) => obj.id === id)[0].date;
-    if ((todayTime - taskTime)>7*dayMilliSeconds || (taskTime > todayTime)) {
+    console.log(Math.abs(todayTime - taskTime)/dayMilliSeconds);
+    if (Math.abs(todayTime - taskTime)>7*dayMilliSeconds) {
       return;
     }
     const objIndex = this.tasks.findIndex((obj) => obj.id == id);
