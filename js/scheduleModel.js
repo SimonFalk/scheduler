@@ -27,9 +27,34 @@ export default class ScheduleModel {
 
     this.dates = generateDates();
 
-    this.persons = ["Ines", "Ellen", "Melker", "Simon", "Hannes", "Lena"];
+    this.persons = [
+      {
+        name: "Ines",
+        score: 0,
+      },
+      {
+        name: "Ellen",
+        score: 0,
+      },
+      {
+        name: "Melker",
+        score: 0,
+      },
+      {
+        name: "Simon",
+        score: 0,
+      },
+      {
+        name: "Hannes",
+        score: 0,
+      },
+      {
+        name: "Lena",
+        score: 0,
+      },
+    ];
 
-    this.duties = ["Kitchen", "Recycling"];
+    this.duties = ["Kitchen/recycling"];
 
     this.tasks = [];
     generateDates().forEach((date) => this.calculateTasks(date));
@@ -63,8 +88,8 @@ export default class ScheduleModel {
         ...this.tasks,
         {
           duty: this.duties[dutyId],
-          person: this.persons[(getWeek(date) + dutyId * 2) % 6],
-          month: date.toLocaleDateString("en-US", {
+          person: this.persons[(getWeek(date) + dutyId * 2) % 6].name,
+          date: date.toLocaleDateString("en-US", {
             day: "2-digit",
             month: "short",
           }),

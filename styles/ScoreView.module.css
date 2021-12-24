@@ -1,0 +1,7 @@
+.container {
+  padding: 10px 20px;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}

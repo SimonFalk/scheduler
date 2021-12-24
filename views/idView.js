@@ -1,14 +1,6 @@
 import styles from "../styles/IdView.module.css";
 
 export default function IdView(props) {
-  const personalIcons = {
-    Lena: "fas fa-landmark",
-    Ellen: "fas fa-brain",
-    Melker: "fas fa-industry",
-    Simon: "fas fa-atom",
-    Hannes: "fas fa-guitar",
-    Ines: "fas fa-robot",
-  };
   return (
     <div className={styles.container}>
       <form className={styles.form}>
@@ -17,7 +9,7 @@ export default function IdView(props) {
           <select id="name-select">
             <option defaultValue>(Choose)</option>
             {[props.persons].map((person) => {
-              <option>{person}</option>;
+              <option>{person.name}</option>;
             })}
           </select>
         </div>

@@ -1,15 +1,8 @@
 import styles from "../styles/TestView.module.css";
+import { personalIcons } from "../views/personalIcons";
 import Image from "next/image";
 
 export default function TestView(props) {
-  const personalIcons = {
-    Lena: "fas fa-landmark",
-    Ellen: "fas fa-diagnoses",
-    Melker: "fas fa-industry",
-    Simon: "fas fa-calculator",
-    Hannes: "fas fa-music",
-    Ines: "fas fa-robot",
-  };
   return (
     <div className={styles.container}>
       <div className={styles.titleBox}></div>
@@ -26,7 +19,7 @@ export default function TestView(props) {
           {[...props.tasks].map((task) => {
             return (
               <tr class={styles.tableRow} key={task.id}>
-                <td>{task.month}</td>
+                <td>{task.date}</td>
                 <td>{task.person}</td>
                 <td className={task.done ? "icon-color" : "icon-black"}>
                   <i
