@@ -21,31 +21,37 @@ export default class ScheduleModel {
 
     this.persons = [
       {
+        email: "ines@test.com",
         room: 1101,
         name: "Ines",
         score: 0,
       },
       {
+        email: "ellen@test.com",
         room: 1202,
         name: "Ellen",
         score: 0,
       },
       {
+        email: "melker@test.com",
         room: 1201,
         name: "Melker",
         score: 0,
       },
       {
+        email: "smnfalk@gmail.com",
         room: 1104,
         name: "Simon",
         score: 0,
       },
       {
+        email: "hannes@test.com",
         room: 1103,
         name: "Hannes",
         score: 0,
       },
       {
+        email: "lena@test.com",
         room: 1102,
         name: "Lena",
         score: 0,
