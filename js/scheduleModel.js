@@ -21,26 +21,32 @@ export default class ScheduleModel {
 
     this.persons = [
       {
+        room: 1101,
         name: "Ines",
         score: 0,
       },
       {
+        room: 1202,
         name: "Ellen",
         score: 0,
       },
       {
+        room: 1201,
         name: "Melker",
         score: 0,
       },
       {
+        room: 1104,
         name: "Simon",
         score: 0,
       },
       {
+        room: 1103,
         name: "Hannes",
         score: 0,
       },
       {
+        room: 1102,
         name: "Lena",
         score: 0,
       },
@@ -66,26 +72,28 @@ export default class ScheduleModel {
       }
     });
   }
-  setUser(user) {
-    this.user = user;
+  setUser(email) {
+    this.user = email;
     this.notifyObservers();
   }
   setDate(date) {
     this.today = date;
-    this.notifyObservers()
+    this.notifyObservers();
   }
   setBaseDate(date) {
     this.baseDate = date;
     this.tasks = [];
     this.generateDates(20).forEach((date) => this.calculateTasks(date));
-    this.notifyObservers()
+    this.notifyObservers();
   }
   calculateMonths() {
     const today = new Date();
     return [0, 1, 2, 3].map((lag) => (today.getMonth() + lag) % 12);
   }
   generateDates(len) {
-    const lastSunday = new Date(this.baseDate.getTime() - dayMilliSeconds * (this.baseDate.getDay()));
+    const lastSunday = new Date(
+      this.baseDate.getTime() - dayMilliSeconds * this.baseDate.getDay()
+    );
     console.log(lastSunday.toLocaleDateString("en-US"));
     return [...Array(len).keys()].map((lag) => {
       return new Date(lastSunday.getTime() + lag * 7 * dayMilliSeconds);
@@ -99,7 +107,7 @@ export default class ScheduleModel {
           duty: this.duties[dutyId],
           person: this.persons[(getWeek(date) + dutyId * 2) % 6].name,
           date: date,
-          id: dutyId + (date.getTime() / 1000).toString().substring(0,9),
+          id: dutyId + (date.getTime() / 1000).toString().substring(0, 9),
           done: false,
           stars: 0,
         },
@@ -109,14 +117,15 @@ export default class ScheduleModel {
   }
   setStarsForTask(taskId, starsValue) {
     this.tasks = [...this.tasks].map((obj) => {
-      return (taskId===obj.id)?{...obj, stars:starsValue}:obj;});
+      return taskId === obj.id ? { ...obj, stars: starsValue } : obj;
+    });
     this.notifyObservers();
   }
   toggleTaskState(id) {
     const todayTime = this.today.getTime();
     const taskTime = this.tasks.filter((obj) => obj.id === id)[0].date;
-    console.log(Math.abs(todayTime - taskTime)/dayMilliSeconds);
-    if (Math.abs(todayTime - taskTime)>7*dayMilliSeconds) {
+    console.log(Math.abs(todayTime - taskTime) / dayMilliSeconds);
+    if (Math.abs(todayTime - taskTime) > 7 * dayMilliSeconds) {
       return;
     }
     const objIndex = this.tasks.findIndex((obj) => obj.id == id);

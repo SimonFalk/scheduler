@@ -12,7 +12,7 @@ function Home(props) {
         <HeaderView />
       </div>
       <div className={styles.idBox}>
-        <IdPresenter model={props.model} />
+        <IdPresenter model={props.model} auth={props.auth} />
       </div>
       <div className={styles.tableBox}>
         {[...props.model.duties].map((duty) => (
