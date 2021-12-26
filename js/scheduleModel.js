@@ -19,44 +19,48 @@ export default class ScheduleModel {
 
     this.today = new Date();
 
+    this.names = ["Ines", "Ellen", "Melker", "Simon", "Hannes", "Lena"];
+
     this.persons = [
       {
         email: "ines@test.com",
         room: 1101,
         name: "Ines",
-        score: 0,
+        stars: {},
       },
       {
         email: "ellen@test.com",
         room: 1202,
         name: "Ellen",
-        score: 0,
+        stars: {},
       },
       {
         email: "melker@test.com",
         room: 1201,
         name: "Melker",
-        score: 0,
+        stars: {},
       },
       {
         email: "smnfalk@gmail.com",
         room: 1104,
         name: "Simon",
-        score: 0,
+        stars: {},
       },
       {
         email: "hannes@test.com",
         room: 1103,
         name: "Hannes",
-        score: 0,
+        stars: {},
       },
       {
         email: "lena@test.com",
         room: 1102,
         name: "Lena",
-        score: 0,
+        stars: {},
       },
     ];
+
+    this.stars = { Ines: 0, Ellen: 0, Melker: 0, Simon: 0, Hannes: 0, Lena: 0 };
 
     this.duties = ["Kitchen/recycling"];
 
@@ -116,27 +120,33 @@ export default class ScheduleModel {
           id: dutyId + (date.getTime() / 1000).toString().substring(0, 9),
           done: false,
           stars: 0,
+          hasStarred: [],
         },
       ];
     }
     return;
   }
-  setStarsForTask(taskId, starsValue) {
-    this.tasks = [...this.tasks].map((obj) => {
-      return taskId === obj.id ? { ...obj, stars: starsValue } : obj;
-    });
+  calculateStars(toPerson) {
+    this.stars = { ...this.stars, [toPerson]: this.stars[toPerson] + 1 };
     this.notifyObservers();
   }
-  toggleTaskState(id) {
-    const todayTime = this.today.getTime();
-    const taskTime = this.tasks.filter((obj) => obj.id === id)[0].date;
-    console.log(Math.abs(todayTime - taskTime) / dayMilliSeconds);
-    if (Math.abs(todayTime - taskTime) > 7 * dayMilliSeconds) {
-      return;
-    }
-    const objIndex = this.tasks.findIndex((obj) => obj.id == id);
-    this.tasks = this.tasks.map((task) => {
-      return task.id != id ? task : { ...task, done: !task.done };
+
+  starTask(toPerson, taskId) {
+    this.tasks = [...this.tasks].map((task) => {
+      return task.id != taskId
+        ? task
+        : {
+            ...task,
+            hasStarred: [...task.hasStarred, this.user],
+            stars: task.stars + 1,
+          };
+    });
+    this.calculateStars(toPerson);
+    this.notifyObservers();
+  }
+  setTaskState(id, state) {
+    this.tasks = [...this.tasks].map((task) => {
+      return task.id != id ? task : { ...task, done: state };
     });
     this.notifyObservers();
   }

@@ -13,7 +13,7 @@ export default function IdPresenter(props) {
       user={user}
       signOutUser={() => props.auth.signOut()}
       signInUser={() => {
-        router.push("/test");
+        router.push("/signin");
       }}
     />
   );
