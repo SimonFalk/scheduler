@@ -1,5 +1,5 @@
 .container {
-  width: 80%;
+  width: 90%;
   text-align: center;
   background-color: rgb(235, 235, 235);
 }
@@ -34,7 +34,7 @@
   scroll-behavior: smooth;
 }
 
-.table {
+.schedule table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
@@ -50,7 +50,7 @@
   border: 2px solid #fff;
 }
 
-.table tr td {
+.schedule table td {
   padding: 3px;
 }
 

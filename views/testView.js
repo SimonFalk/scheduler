@@ -97,11 +97,13 @@ function ListEntry(props) {
       }
       key={props.task.id}
     >
-      <td>{new Date(props.task.date).toDateString().slice(4, -5)}</td>
-      <td>
+      <td className={styles.dateColumn}>
+        {new Date(props.task.date).toDateString().slice(4, -5)}
+      </td>
+      <td className={styles.nameColumn}>
         {props.task.person} <i className={personalIcons[props.task.person]}></i>
       </td>
-      <td>
+      <td className={styles.actionColumn}>
         {props.task.person != props.user?.name ? (
           !props.task.hasStarred[props.user?.name] ? (
             <button
@@ -145,7 +147,7 @@ function ListEntry(props) {
           </button>
         )}
       </td>
-      <td>
+      <td className={styles.actionColumn}>
         {Array(props.task.stars)
           .fill(0)
           .map((_, i) => (
