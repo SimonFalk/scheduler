@@ -18,9 +18,6 @@ export default class ScheduleModel {
     this.today = new Date(2022, 1, 20);
 
     this.stars = { Ines: 0, Ellen: 0, Melker: 0, Simon: 0, Hannes: 0, Lena: 0 };
-  }
-  build() {
-    console.log("Building model...");
     this.persons = [
       {
         email: "ines@test.com",
@@ -53,6 +50,9 @@ export default class ScheduleModel {
         name: "Lena",
       },
     ];
+  }
+  build() {
+    console.log("Building model...");
     this.generateDates(24, new Date(2022, 0, 2), true).forEach((date) =>
       this.calculateTasks(date)
     );
