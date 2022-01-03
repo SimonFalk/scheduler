@@ -19,14 +19,12 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
 
   React.useEffect(() => {
-    console.log("Rendering app");
     let loadingFromFirebase = false;
     let writingToFirebase = false;
     const writeObs = function () {
       // save the model into the cloud
       if (loadingFromFirebase) return; // flag that tells observer to NOT save to cloud
       writingToFirebase = true;
-      console.log("Writing to firebase");
       set(ref(database, "tasks"), model.tasks);
       set(ref(database, "stars"), model.stars);
       writingToFirebase = false;
@@ -34,7 +32,6 @@ export default function MyApp({ Component, pageProps }) {
 
     onAuthStateChanged(auth, (user) => {
       // user is a `User` object or `null`
-      console.log("User changed");
       model.setUser(user ? user.email : "");
       if (user) {
         model.addObserver(writeObs);

@@ -25,7 +25,25 @@ function Home(props) {
           </div>
         </div>
       ) : (
-        <div></div>
+        <div className={styles.summaryBox}>
+          <h4>How to use</h4>
+          <ul>
+            <li>Sign in with your account.</li>
+            <li>In the schedule you see which weeks you have cleaning duty.</li>
+            <li>You can check your task from the due date and 3 days after.</li>
+            <li>
+              You can give another person a star (only one) anytime during the
+              week and 3 days after.
+            </li>
+            <li>
+              A checked task gives 2 points and a star from a friend gives one
+              point.
+            </li>
+            <li>
+              The person with most points in the end will be greatly rewarded...
+            </li>
+          </ul>
+        </div>
       )}
     </div>
   );

@@ -158,6 +158,12 @@ export default class ScheduleModel {
     this.notifyObservers();
   }
   setTaskState(id, state) {
+    const toPerson = this.tasks.filter((obj) => obj.id === id)[0].person;
+    if (state === true) {
+      this.stars = { ...this.stars, [toPerson]: this.stars[toPerson] + 2 };
+    } else {
+      this.stars = { ...this.stars, [toPerson]: this.stars[toPerson] - 2 };
+    }
     this.tasks = [...this.tasks].map((task) => {
       return task.id != id ? task : { ...task, done: state };
     });

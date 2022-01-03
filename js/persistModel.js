@@ -14,7 +14,6 @@ export default function persistModel(model) {
       try {
         const data = snapshot.val();
         if (data) {
-          console.log("Writing to model");
           model.setTasks(data.tasks || []);
           model.setStars(data.stars || {});
         }

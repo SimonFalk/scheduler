@@ -165,11 +165,9 @@ function ListEntry(props) {
 
 export default function TestView(props) {
   const [error, setError] = React.useState("");
-  const scrollBox = React.useRef(null);
+  const scrollBox = React.useRef(null); //TODO: Auto-scroll to current date
   const disableMyWeeks = true;
-  React.useEffect(() => {
-    console.log("Rendering TestView...");
-  }, []);
+  React.useEffect(() => {}, []);
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
@@ -236,7 +234,7 @@ export default function TestView(props) {
                 <td>mop the floor (same rooms)</td>
               </tr>
               <tr>
-                <td>wash the rugs (if dirty)</td>
+                <td>wash the kitchen rugs (if dirty)</td>
               </tr>
               <tr>
                 <td>clean the bench by the coffee machine</td>

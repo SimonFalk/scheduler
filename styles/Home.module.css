@@ -25,4 +25,6 @@
 
 .summaryBox {
   margin: 5px;
+  background-color: rgb(235, 235, 235);
+  padding: 10px;
 }
