@@ -7,15 +7,29 @@ export default function IdView(props) {
       {props.user ? (
         props.error || (
           <>
-            <div>
+            <div className={styles.content}>
               <div className={styles.card}>
                 <div className={styles.cardIcon}>
                   <i className={personalIcons[props.user.name]}></i>
                 </div>
-                <div>{props.user.name}</div>
-                <div>{props.user.email}</div>
+                <div className={styles.details}>
+                  <div>
+                    <span className={styles.field}>Name: </span>
+                    {props.user.name}
+                  </div>
+                  <div>
+                    <span className={styles.field}>Room: </span>{" "}
+                    {props.user.room}
+                  </div>
+                  <div>
+                    <span className={styles.field}>Email: </span>
+                    {props.user.email}
+                  </div>
+                </div>
               </div>
-              <button onClick={props.signOutUser}>Sign out</button>
+              <div className={styles.signOutButton} onClick={props.signOutUser}>
+                <i class="fas fa-sign-out-alt"></i>
+              </div>
             </div>
           </>
         )

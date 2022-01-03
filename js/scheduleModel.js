@@ -15,47 +15,48 @@ export default class ScheduleModel {
 
     this.user = null;
     this.userError = "";
-    this.today = new Date(2022, 1, 20);
+    this.today = new Date();
 
     this.stars = { Ines: 0, Ellen: 0, Melker: 0, Simon: 0, Hannes: 0, Lena: 0 };
     this.persons = [
       {
-        email: "ines@test.com",
-        room: 1101,
+        email: "inexlourenco@gmail.com",
+        room: "1101 A",
         name: "Ines",
       },
       {
         email: "ellen.ode@outlook.com",
-        room: 1202,
+        room: "1103 B",
         name: "Ellen",
       },
       {
-        email: "melker@test.com",
-        room: 1201,
+        email: "melker.duberg@gmail.com",
+        room: "1102 B",
         name: "Melker",
       },
       {
         email: "smnfalk@gmail.com",
-        room: 1104,
+        room: "1104 A",
         name: "Simon",
       },
       {
-        email: "hannes@test.com",
-        room: 1103,
+        email: "hannes.bjorkqvist@hotmail.com",
+        room: "1103 A",
         name: "Hannes",
       },
       {
-        email: "lena@test.com",
-        room: 1102,
+        email: "l-feit@hotmail.de",
+        room: "1102 A",
         name: "Lena",
       },
     ];
   }
   build() {
     console.log("Building model...");
-    this.generateDates(24, new Date(2022, 0, 2), true).forEach((date) =>
+    this.generateDates(24, new Date(2022, 0, 9), true).forEach((date) =>
       this.calculateTasks(date)
     );
+    this.notifyObservers();
   }
   addObserver(callback) {
     this.observers = [...this.observers, callback];
@@ -112,7 +113,7 @@ export default class ScheduleModel {
     this.tasks = [
       ...this.tasks,
       {
-        person: this.persons[getWeek(date) % 6].name,
+        person: this.persons[(getWeek(date) - 1) % 6].name,
         date: date.getTime(),
         id: (date.getTime() / 1000).toString().substring(0, 9),
         done: false,

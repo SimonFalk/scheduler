@@ -1,11 +1,37 @@
 .container {
-  padding: 8px;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  padding: 8px 3px;
 }
-.form {
+.content {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  margin: 8px;
 }
-.passwordInput {
-  width: 5em;
+.card {
+  text-align: left;
+  padding: 5px;
+  border: 2px solid white;
+  flex: 4 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.field {
+  font-weight: bold;
+}
+.cardIcon {
+  padding-left: 10px;
+  padding-right: 20px;
+  font-size: 36px;
+}
+.signOutButton:hover {
+  cursor: pointer;
+}
+.signOutButton {
+  margin: 0px;
+  margin-left: 8px;
+
+  flex: 0 1 auto;
 }

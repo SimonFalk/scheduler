@@ -80,7 +80,7 @@ function ListEntry(props) {
       props.task.date - props.today.getTime() >
       preLimitStar * dayMilliSeconds
     ) {
-      setMarkableError(
+      setStarrableError(
         "It's not possible to give this task a star yet. Please try again after " +
           new Date(
             props.task.date + postLimitCheck * dayMilliSeconds
@@ -208,12 +208,12 @@ export default function TestView(props) {
         </div>
       </div>
       <div className={styles.title}>
-        <div>**This is a test version**</div>
         <div>
           Today is{" "}
-          {props.today.toLocaleDateString("en-US", {
+          {props.today.toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "short",
+            year: "numeric",
           })}
         </div>
         <div>{error}</div>
@@ -282,7 +282,7 @@ export default function TestView(props) {
               </tr>
             </thead>
             <tbody>
-              {[...props.tasks].map((task) => {
+              {props.tasks?.map((task) => {
                 return (
                   <ListEntry
                     task={task}
