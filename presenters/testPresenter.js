@@ -1,17 +1,33 @@
 import TestView from "../views/testView";
+import React from "react";
 import useModelProperty from "../js/useModelProperty";
+
+const dayMilliSeconds = 24 * 3600 * 1000;
+
 export default function TestPresenter(props) {
+  const [error, setError] = React.useState("");
+  const [view, setView] = React.useState(props.view);
   const tasks = useModelProperty(props.model, "tasks");
   const today = useModelProperty(props.model, "today");
+  const user = useModelProperty(props.model, "user");
+
   return (
     <TestView
-      today={props.model.today}
-      forDuty={props.forDuty}
-      tasks={[...tasks].filter((task) => task.duty === props.forDuty)}
-      toggleTaskState={(id) => props.model.toggleTaskState(id)}
-      increaseStars={(taskId) => {
-        const stars = tasks.filter((obj) => obj.id === taskId)[0].stars + 1;
-        props.model.setStarsForTask(taskId, stars);
+      today={today}
+      persons={props.model.persons}
+      user={user}
+      changeView={setView}
+      view={view}
+      tasks={tasks}
+      error={error}
+      setTaskDone={(task) => {
+        props.model.setTaskState(task.id, true);
+      }}
+      increaseStars={(task) => {
+        props.model.starTask(task.person, task.id, 1);
+      }}
+      decreaseStars={(task) => {
+        props.model.starTask(task.person, task.id, -1);
       }}
     />
   );

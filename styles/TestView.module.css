@@ -1,7 +1,21 @@
 .container {
-  width: 40%;
+  width: 80%;
   text-align: center;
   background-color: rgb(235, 235, 235);
+}
+
+.schedule {
+  width: 100%;
+  overflow-y: auto;
+  height: 300px;
+}
+
+.schedule thead th {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  font-style: italic;
+  z-index: 1;
 }
 
 .title {
@@ -14,16 +28,18 @@
   color: black;
 }
 
+.schedule {
+  overflow-y: auto;
+  height: 400px;
+  scroll-behavior: smooth;
+}
+
 .table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
   font-size: 10pt;
-}
-
-.table thead {
-  font-style: italic;
-  background-color: #fff;
+  width: 100%;
 }
 
 .table tbody {
@@ -36,4 +52,31 @@
 
 .table tr td {
   padding: 3px;
+}
+
+.disabled {
+  opacity: 0.35;
+}
+
+.selectedRow {
+  background-color: rgb(185, 185, 185);
+}
+
+.menuOptions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  font-size: 10pt;
+  font-style: italic;
+  font-weight: bold;
+}
+.menuOptions div {
+  padding: 5px;
+  border: 2px solid #fff;
+  background-color: #eab676;
+}
+
+.menuOptions div:hover {
+  background-color: #e28743;
+  cursor: pointer;
 }

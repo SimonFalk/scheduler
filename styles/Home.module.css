@@ -11,8 +11,8 @@
 
 .tableBox {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(235, 235, 235);
   margin: 5px;
   padding: 10px 0px;
