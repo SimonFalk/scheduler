@@ -4,23 +4,27 @@ import Link from "next/link";
 import "../styles/global.css";
 import React from "react";
 import ScheduleModel from "../js/scheduleModel";
-import { auth } from "../js/firebase";
+import { auth, database } from "../js/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import persistModel from "../js/persistModel";
 
 const model = new ScheduleModel();
+model.build();
+persistModel(model);
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     window.model = model;
     window.auth = auth;
-  });
+  }, []);
 
   React.useEffect(() => {
+    console.log("Rendering app");
     onAuthStateChanged(auth, (user) => {
       // user is a `User` object or `null`
-      console.log("setting user");
-      model.setUser(user ? user.email : null);
+      console.log("User changed");
+      model.setUser(user ? user.email : "");
     });
   }, []);
 

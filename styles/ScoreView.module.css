@@ -1,6 +1,14 @@
 .container {
   padding: 10px 20px;
   background-color: rgb(235, 235, 235);
+  text-align: center;
+}
+.title {
+  margin-bottom: 7px;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+}
+.board {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;

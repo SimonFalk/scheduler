@@ -4,7 +4,7 @@ import TestPresenter from "../presenters/testPresenter";
 function Test(props) {
   return (
     <div className="container">
-      <TestPresenter model={props.model} forDuty={"Kitchen/recycling"} />
+      <TestPresenter model={props.model} />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import IdPresenter from "../presenters/idPresenter";
 import TestPresenter from "../presenters/testPresenter";
 import ScorePresenter from "../presenters/scorePresenter";
 function Home(props) {
-  const duties = useModelProperty(props.model, "duties");
   return (
     <div className={styles.home}>
       <div className={styles.headerBox}>
@@ -15,9 +14,7 @@ function Home(props) {
         <IdPresenter model={props.model} auth={props.auth} />
       </div>
       <div className={styles.tableBox}>
-        {[...props.model.duties].map((duty) => (
-          <TestPresenter forDuty={duty} model={props.model} />
-        ))}
+        <TestPresenter model={props.model} view={"all"} />
       </div>
       <div className={styles.summaryBox}>
         <ScorePresenter model={props.model} />

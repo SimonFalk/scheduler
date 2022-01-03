@@ -1,15 +1,21 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { EmailAuthProvider } from "firebase/auth";
+import { getAuth, EmailAuthProvider } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDXW8GDkbqM9jZzYFbLYeN1MQb8t-wysug",
-  authDomain: "cleaningschedule-fc3e1.firebaseapp.com",
-  projectId: "cleaningschedule-fc3e1",
-  storageBucket: "cleaningschedule-fc3e1.appspot.com",
-  messagingSenderId: "910593614232",
-  appId: "1:910593614232:web:9eaf9af4afc049e95e4bed",
-  measurementId: "G-QQHWGWBMC2",
+  apiKey: "AIzaSyDaBR9TdxPHahpeqbn41Dh7vxzqvmkCRaw",
+
+  authDomain: "skurat.firebaseapp.com",
+
+  databaseURL: "https://skurat-default-rtdb.firebaseio.com/",
+
+  projectId: "skurat",
+
+  storageBucket: "skurat.appspot.com",
+
+  messagingSenderId: "986460938097",
+
+  appId: "1:986460938097:web:75b5f7bb2ffe744da920d0",
 };
 
 const uiConfig = {
@@ -31,5 +37,7 @@ const uiConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 const auth = getAuth(app);
-export { auth, uiConfig };
+
+export { auth, database, uiConfig };

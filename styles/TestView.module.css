@@ -14,6 +14,8 @@
   position: sticky;
   top: 0;
   background-color: #ffffff;
+  font-style: italic;
+  z-index: 1;
 }
 
 .title {
@@ -38,12 +40,6 @@
   border-collapse: collapse;
   font-size: 10pt;
   width: 100%;
-  height: 300px;
-}
-
-.table thead {
-  font-style: italic;
-  background-color: #fff;
 }
 
 .table tbody {
@@ -56,4 +52,31 @@
 
 .table tr td {
   padding: 3px;
+}
+
+.disabled {
+  opacity: 0.35;
+}
+
+.selectedRow {
+  background-color: rgb(185, 185, 185);
+}
+
+.menuOptions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  font-size: 10pt;
+  font-style: italic;
+  font-weight: bold;
+}
+.menuOptions div {
+  padding: 5px;
+  border: 2px solid #fff;
+  background-color: #eab676;
+}
+
+.menuOptions div:hover {
+  background-color: #e28743;
+  cursor: pointer;
 }
