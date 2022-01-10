@@ -32,7 +32,8 @@ export default function MyApp({ Component, pageProps }) {
 
     onAuthStateChanged(auth, (user) => {
       // user is a `User` object or `null`
-      model.setUser(user ? user.email : "");
+      model.setUser(user ? user.email : null);
+      //model.setUser(user ? user.email : "");
       if (user) {
         model.addObserver(writeObs);
         onValue(
@@ -65,6 +66,9 @@ export default function MyApp({ Component, pageProps }) {
         model.setTasks([]);
       }
     });
+    return () => {
+      model.removeObserver(writeObs);
+    };
   }, []);
 
   return (

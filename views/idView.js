@@ -28,7 +28,7 @@ export default function IdView(props) {
                 </div>
               </div>
               <div className={styles.signOutButton} onClick={props.signOutUser}>
-                <i class="fas fa-sign-out-alt"></i>
+                <i className="fas fa-sign-out-alt"></i>
               </div>
             </div>
           </>

@@ -12,12 +12,14 @@ export default class ScheduleModel {
     this.persistors = [];
     this.updatePersistors = true;
     this.observers = [];
-    this.addObserver(this.sendMail);
+
+    // Uncomment to activate mailing list
+    //this.addObserver(this.sendMail);
 
     this.user = null;
     this.userError = "";
     this.today = new Date();
-    this.stars = { Ines: 0, Ellen: 0, Melker: 0, Simon: 0, Hannes: 0, Lena: 0 };
+    this.stars = {};
     this.persons = [
       {
         email: "inexlourenco@gmail.com",
