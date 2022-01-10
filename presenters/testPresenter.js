@@ -11,6 +11,14 @@ export default function TestPresenter(props) {
   const today = useModelProperty(props.model, "today");
   const user = useModelProperty(props.model, "user");
 
+  React.useEffect(() => {
+    if (!user) {
+      setView("readme");
+    } else {
+      setView("all");
+    }
+  }, [user]);
+
   return (
     <TestView
       today={today}

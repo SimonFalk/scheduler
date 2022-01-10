@@ -42,11 +42,11 @@
   width: 100%;
 }
 
-.table tbody {
+.schedule table tbody {
   background-color: lightblue;
 }
 
-.table tr {
+.schedule table tr {
   border: 2px solid #fff;
 }
 
