@@ -47,6 +47,7 @@ export default function MyApp({ Component, pageProps }) {
                 console.log("Writing to model");
                 model.setTasks(data.tasks || []);
                 model.setStars(data.stars || {});
+                model.sendMail();
               }
             } catch (e) {
               console.log(e);

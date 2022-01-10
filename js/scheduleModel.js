@@ -12,11 +12,11 @@ export default class ScheduleModel {
     this.persistors = [];
     this.updatePersistors = true;
     this.observers = [];
+    this.addObserver(this.sendMail);
 
     this.user = null;
     this.userError = "";
     this.today = new Date();
-
     this.stars = { Ines: 0, Ellen: 0, Melker: 0, Simon: 0, Hannes: 0, Lena: 0 };
     this.persons = [
       {
@@ -57,6 +57,41 @@ export default class ScheduleModel {
       this.calculateTasks(date)
     );
     this.notifyObservers();
+  }
+  sendMail() {
+    this.tasks
+      .filter(
+        (task) =>
+          this.today.getTime() > task.date - 10 * dayMilliSeconds &&
+          this.today.getTime() < task.date
+      )
+      .forEach((task) => {
+        if (!task.mailSent) {
+          this.tasks = this.tasks.map((obj) =>
+            obj.id === task.id ? { ...obj, mailSent: true } : obj
+          );
+          data = {
+            name: task.person,
+            date: task.date,
+            email: this.persons.filter((obj) => obj.name === task.person)[0]
+              .email,
+          };
+
+          // fetch("/api/email", {
+          //   method: "POST",
+          //   headers: {
+          //     Accept: "application/json, text/plain, */*",
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: JSON.stringify(data),
+          // }).then((res) => {
+          //   console.log("Response received");
+          //   if (res.status === 200) {
+          //     console.log("Response succeeded!");
+          //   }
+          // });
+        }
+      });
   }
   addObserver(callback) {
     this.observers = [...this.observers, callback];
