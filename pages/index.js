@@ -7,9 +7,6 @@ import IdPresenter from "../presenters/idPresenter";
 import TestPresenter from "../presenters/testPresenter";
 import ScorePresenter from "../presenters/scorePresenter";
 function Home(props) {
-  const router = useRouter();
-  const user = useModelProperty(props.model, "user");
-
   return (
     <div className={styles.home}>
       <div className={styles.headerBox}>

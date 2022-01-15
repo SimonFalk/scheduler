@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Script from "next/script";
-import Link from "next/link";
 import "../styles/global.css";
 import React from "react";
 import ScheduleModel from "../js/scheduleModel";
 import { auth, database } from "../js/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import persistModel from "../js/persistModel";
 import { set, ref, onValue } from "firebase/database";
 
 const model = new ScheduleModel();
@@ -45,10 +43,9 @@ export default function MyApp({ Component, pageProps }) {
             try {
               const data = snapshot.val();
               if (data) {
-                console.log("Writing to model");
                 model.setTasks(data.tasks || []);
                 model.setStars(data.stars || {});
-                model.sendMail();
+                //model.sendMail();
               }
             } catch (e) {
               console.log(e);
